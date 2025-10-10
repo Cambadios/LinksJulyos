@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JULYO$ | links</title>
+  <meta name="description" content="JULYO$ — Artista, compositor y bailarín boliviano. Trap latino, reggaetón, hip hop, drill, cumbia y RKT.">
+  <meta property="og:title" content="JULYO$ | links">
+  <meta property="og:description" content="Artista, compositor y bailarín boliviano. Trap latino, reggaetón, hip hop, drill, cumbia y RKT.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./foto/El.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --text:#f0f0f3; --muted:#b3b7c0;
+      --btn:#202027; --btnHover:#2a2a32; --ring:#2d5cff33;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; color:var(--text);
+      background: linear-gradient(#000000a8,#000000a8),
+                  url("./fondo/fondo.jpg") center/cover no-repeat fixed;
+      display:grid; place-items:center; padding:24px;
+    }
+    .card{
+      width:min(820px, 100%); background:rgba(22,22,26,.82); backdrop-filter: blur(10px);
+      border:1px solid #2a2a35; border-radius:20px; padding:28px; box-shadow:0 10px 40px #000a;
+      text-align:center;
+    }
+    .avatar{
+      width:180px; height:180px; border-radius:50%; overflow:hidden;
+      border:3px solid #ffffff33; margin:0 auto 20px; background:#0b0b0d;
+      box-shadow:0 0 20px #0006;
+    }
+    .avatar img{width:100%; height:100%; object-fit:cover}
+    .name{font-size:2rem; font-weight:800; line-height:1.1; letter-spacing:.5px}
+    .handle{color:var(--muted); font-weight:600; margin-bottom:10px;}
+    .bio{margin-top:10px; color:#e6e6ec; line-height:1.5; font-size:1rem;}
+    .chips{display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:12px}
+    .chip{font-size:.85rem; padding:6px 10px; border:1px solid #2d2d39; border-radius:999px; background:#1a1a22}
+    .btn-lanzamiento{
+      margin-top:24px; display:inline-flex; align-items:center; gap:10px;
+      background:linear-gradient(90deg,#8b02fc,#9900ff); color:white; text-decoration:none;
+      padding:14px 24px; border-radius:12px; font-weight:800; letter-spacing:.5px;
+      box-shadow:0 0 10px #d13bff99; transition:transform .1s ease, box-shadow .2s ease;
+    }
+    .btn-lanzamiento:hover{transform:scale(1.05); box-shadow:0 0 20px #8400ff99;}
+    .links{margin-top:35px; display:grid; gap:12px}
+    .link{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      background:linear-gradient(0deg, #1a1a21, #1d1d26); border:1px solid #282833; border-radius:14px;
+      text-decoration:none; color:var(--text); padding:14px 16px;
+      transition:transform .05s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .link:hover{transform:translateY(-1px); border-color:#3a3a45; box-shadow:0 0 0 6px var(--ring)}
+    .link .left{display:flex; align-items:center; gap:12px}
+    .link svg{flex-shrink:0}
+    .link .title{font-weight:800}
+    .link .desc{color:var(--muted); font-size:.95rem}
+    .footer{margin-top:18px; color:var(--muted); font-size:.9rem; text-align:center}
+    @media (max-width:600px){ .name{font-size:1.6rem} .avatar{width:150px;height:150px} }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <!-- Foto centrada -->
+    <div class="avatar">
+      <img src="./foto/El.jpg" alt="Foto de JULYO$" />
+    </div>
+
+    <!-- Nombre y descripción -->
+    <div class="name">JULYO$</div>
+    <div class="handle">@julyos.yb</div>
+    <p class="bio">
+      José Julián Flores Castro (Cochabamba, Bolivia; 23/02/2002), conocido como <strong>JULYO$</strong>, es artista, compositor y bailarín boliviano.
+      Referente de la música urbana juvenil en su país, popularizó el trap y hoy destaca en la escena de su ciudad.
+    </p>
+
+    <div class="chips">
+      <span class="chip">Artista boliviano</span>
+      <span class="chip">Trap · Reggaetón · Hip hop · Drill</span>
+      <span class="chip">Activo desde 2020</span>
+    </div>
+
+    <!-- 🔥 ULTIMO LANZAMIENTO -->
+    <a class="btn-lanzamiento" href="https://www.youtube.com/watch?v=ul9xsOGTwGY" target="_blank" rel="noopener">
+      ULTIMO LANZAMIENTO!
+    </a>
+
+    <!-- Enlaces destacados -->
+    <div class="links" aria-label="Enlaces destacados">
+
+      <!-- Instagram -->
+      <a class="link" href="https://www.instagram.com/julyos.yb" target="_blank" rel="noopener">
+        <div class="left">
+          <!-- icono Instagram -->
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm6-1.5a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
+          </svg>
+          <div>
+            <div class="title">Instagram</div>
+            <div class="desc">@julyos.yb · Fotos, reels y más</div>
+          </div>
+        </div>
+        <!-- flecha -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 11h8.59l-4.3-4.29L12 5l7 7-7 7-1.71-1.71L15.59 13H7v-2Z"/>
+        </svg>
+      </a>
+
+      <!-- YouTube -->
+      <a class="link" href="https://www.youtube.com/channel/UCjggLarxGNOqKBnu3Aou_pQ" target="_blank" rel="noopener">
+        <div class="left">
+          <!-- icono YouTube -->
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6a3 3 0 0 0-2.1 2.1C0 7.9 0 12 0 12s0 4.1.5 5.8a3 3 0 0 0 2.1 2.1C4.3 20.5 12 20.5 12 20.5s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.7.5-5.8.5-5.8s0-4.1-.5-5.8ZM9.5 15.5v-7l6 3.5-6 3.5Z"/>
+          </svg>
+          <div>
+            <div class="title">YouTube</div>
+            <div class="desc">Canal oficial · Videoclips y lanzamientos</div>
+          </div>
+        </div>
+        <!-- flecha -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 11h8.59l-4.3-4.29L12 5l7 7-7 7-1.71-1.71L15.59 13H7v-2Z"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="footer">
+      © <span id="y"></span> JULYO$ · Cochabamba, Bolivia
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
