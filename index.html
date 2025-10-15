@@ -42,6 +42,7 @@
     .bio{margin-top:10px; color:#e6e6ec; line-height:1.5; font-size:1rem;}
     .chips{display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:12px}
     .chip{font-size:.85rem; padding:6px 10px; border:1px solid var(--pillBorder); border-radius:999px; background:var(--pill)}
+    /* ===== Seguidores ===== */
     .followers{
       margin:22px auto 10px; display:flex; flex-direction:column; gap:10px; align-items:center;
     }
@@ -59,6 +60,8 @@
     .badge.ig .dot{background:var(--brand-ig)}
     .badge.tt .dot{background:var(--brand-tt)}
     .badge.yt .dot{background:var(--brand-yt)}
+
+    /* ===== Botón lanzamiento ===== */
     .btn-lanzamiento{
       margin-top:10px; display:inline-flex; align-items:center; gap:10px;
       background:linear-gradient(90deg,#8b02fc,#9900ff); color:white; text-decoration:none;
@@ -66,30 +69,60 @@
       box-shadow:0 0 10px #d13bff99; transition:transform .1s ease, box-shadow .2s ease;
     }
     .btn-lanzamiento:hover{transform:scale(1.05); box-shadow:0 0 20px #8400ff99;}
-    .links{margin-top:28px; display:grid; gap:12px}
+
+    /* ===== Links ===== */
+    .links{
+      margin-top:28px; display:grid; gap:12px; width:100%;
+      text-align:left; /* ← fuerza texto a la izquierda solo en la lista */
+    }
     .link{
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      background:linear-gradient(0deg, #1a1a21, #1d1d26); border:1px solid #282833; border-radius:14px;
+      display:grid;
+      grid-template-columns:auto 1fr auto; /* icono | textos | flecha */
+      align-items:center; gap:12px;
+      background:linear-gradient(0deg, #1a1a21, #1d1d26);
+      border:1px solid #282833; border-radius:14px;
       text-decoration:none; color:var(--text); padding:14px 16px;
       transition:transform .05s ease, border-color .2s ease, box-shadow .2s ease;
     }
     .link:hover{transform:translateY(-1px); border-color:#3a3a45; box-shadow:0 0 0 6px var(--ring)}
-    .link .left{display:flex; align-items:center; gap:12px}
-    .link svg{flex-shrink:0}
-    .link .title{font-weight:800}
-    .link .desc{color:var(--muted); font-size:.95rem}
+    .link .icon{display:flex; align-items:center}
+    .link .texts{min-width:0} /* permite truncar en móviles */
+    .link .title{font-weight:800; line-height:1.2}
+    .link .desc{color:var(--muted); font-size:.95rem; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+
     .footer{margin-top:18px; color:var(--muted); font-size:.9rem; text-align:center}
-    @media (max-width:600px){ .name{font-size:1.6rem} .avatar{width:150px;height:150px} }
+
+    /* ===== Responsive ===== */
+    @media (max-width:700px){
+      .card{padding:22px}
+      .avatar{width:160px;height:160px}
+    }
+    @media (max-width:560px){
+      .name{font-size:1.6rem}
+      .avatar{width:140px;height:140px}
+      .link{padding:12px 14px}
+      .link .desc{font-size:.9rem}
+    }
+    @media (max-width:420px){
+      .link{grid-template-columns:auto 1fr auto; gap:10px}
+      .link .desc{display:none} /* opcional: oculta subtítulo en pantallas muy pequeñas */
+    }
   </style>
 </head>
 <body>
   <main class="card" role="main">
+    <!-- Foto -->
     <div class="avatar">
       <img src="./foto/El.jpg" alt="Foto de JULYO$" />
     </div>
 
+    <!-- Nombre y descripción -->
     <div class="name">JULYO$</div>
     <div class="handle">@julyos.yb</div>
+    <p class="bio">
+      José Julián Flores Castro (Cochabamba, Bolivia; 23/02/2002), conocido como <strong>JULYO$</strong>, es artista, compositor y bailarín boliviano.
+      Referente de la música urbana juvenil en su país, popularizó el trap y hoy destaca en la escena de su ciudad.
+    </p>
 
     <div class="chips">
       <span class="chip">Artista boliviano</span>
@@ -97,6 +130,7 @@
       <span class="chip">Activo desde 2020</span>
     </div>
 
+    <!-- Seguidores -->
     <section class="followers" aria-label="Seguidores en redes">
       <div class="total">
         <span>👥 Total seguidores:</span>
@@ -121,54 +155,65 @@
       </div>
     </section>
 
+    <!-- Último lanzamiento -->
     <a class="btn-lanzamiento" href="https://www.youtube.com/watch?v=ul9xsOGTwGY" target="_blank" rel="noopener">
       ULTIMO LANZAMIENTO!
     </a>
 
+    <!-- Enlaces -->
     <div class="links" aria-label="Enlaces destacados">
+      <!-- Instagram -->
       <a class="link" href="https://www.instagram.com/julyos.yb" target="_blank" rel="noopener">
-        <div class="left">
+        <div class="icon">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm6-1.5a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
           </svg>
-          <div>
-            <div class="title">Instagram</div>
-            <div class="desc">@julyos.yb · Fotos, reels y más</div>
-          </div>
         </div>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M7 11h8.59l-4.3-4.29L12 5l7 7-7 7-1.71-1.71L15.59 13H7v-2Z"/>
-        </svg>
+        <div class="texts">
+          <div class="title">Instagram</div>
+          <div class="desc">@julyos.yb · Fotos, reels y más</div>
+        </div>
+        <div class="chev">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M7 11h8.59l-4.3-4.29L12 5l7 7-7 7-1.71-1.71L15.59 13H7v-2Z"/>
+          </svg>
+        </div>
       </a>
 
+      <!-- TikTok -->
       <a class="link" href="https://www.tiktok.com/@julyos.yb" target="_blank" rel="noopener">
-        <div class="left">
+        <div class="icon">
           <svg width="26" height="26" viewBox="0 0 48 48" fill="currentColor" aria-hidden="true" role="img">
             <path d="M41 17.6c-4.8 0-9.6-3.3-10.6-7.6v20.3c0 7.3-5.9 13.2-13.2 13.2S4 37.6 4 30.3c0-7.3 5.9-13.2 13.2-13.2 1.1 0 2.2.2 3.2.5v6.9a6.5 6.5 0 1 0 4.6 6.2V3h6.8c1.2 5.2 6 9.2 11.2 9.2V17.6z"/>
           </svg>
-          <div>
-            <div class="title">TikTok</div>
-            <div class="desc">@julyos.yb · Clips y trends</div>
-          </div>
         </div>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M7 11h8.59l-4.3-4.29L12 5l7 7-7 7-1.71-1.71L15.59 13H7v-2Z"/>
-        </svg>
+        <div class="texts">
+          <div class="title">TikTok</div>
+          <div class="desc">@julyos.yb · Clips y trends</div>
+        </div>
+        <div class="chev">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M7 11h8.59l-4.3-4.29L12 5l7 7-7 7-1.71-1.71L15.59 13H7v-2Z"/>
+          </svg>
+        </div>
       </a>
 
+      <!-- YouTube -->
       <a class="link" href="https://www.youtube.com/channel/UCjggLarxGNOqKBnu3Aou_pQ" target="_blank" rel="noopener">
-        <div class="left">
+        <div class="icon">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6a3 3 0 0 0-2.1 2.1C0 7.9 0 12 0 12s0 4.1.5 5.8a3 3 0 0 0 2.1 2.1C4.3 20.5 12 20.5 12 20.5s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.7.5-5.8.5-5.8s0-4.1-.5-5.8ZM9.5 15.5v-7l6 3.5-6 3.5Z"/>
           </svg>
-          <div>
-            <div class="title">YouTube</div>
-            <div class="desc">Canal oficial · Videoclips y lanzamientos</div>
-          </div>
         </div>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M7 11h8.59l-4.3-4.29L12 5l7 7-7 7-1.71-1.71L15.59 13H7v-2Z"/>
-        </svg>
+        <div class="texts">
+          <div class="title">YouTube</div>
+          <div class="desc">Canal oficial · Videoclips y lanzamientos</div>
+        </div>
+        <div class="chev">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M7 11h8.59l-4.3-4.29L12 5l7 7-7 7-1.71-1.71L15.59 13H7v-2Z"/>
+          </svg>
+        </div>
       </a>
     </div>
 
@@ -180,13 +225,13 @@
   <script>
     // ========= EDITA SOLO ESTO =========
     const profiles = {
-      instagram: { followers: 7714 }, // 🔹 Cambia aquí tus seguidores reales
-      tiktok:    { followers: 38270 }, // 🔹
-      youtube:   { followers: 2165 }   // 🔹
+      instagram: { followers: 7714 }, // Cambia por tus números reales
+      tiktok:    { followers: 38248 },
+      youtube:   { followers: 2164  }
     };
     // ================================
 
-    // ==== Lógica automática ====
+    // Lógica automática
     const fmt = n => {
       const abs = Math.abs(n);
       if (abs >= 1_000_000) return (n/1_000_000).toFixed(n%1_000_000 ? 1 : 0) + 'M';
