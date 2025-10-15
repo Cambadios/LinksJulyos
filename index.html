@@ -39,21 +39,30 @@
     .avatar img{width:100%; height:100%; object-fit:cover}
     .name{font-size:2rem; font-weight:800; line-height:1.1; letter-spacing:.5px}
     .handle{color:var(--muted); font-weight:600; margin-bottom:10px;}
-    .bio{margin-top:10px; color:#e6e6ec; line-height:1.5; font-size:1rem;}
     .chips{display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:12px}
     .chip{font-size:.85rem; padding:6px 10px; border:1px solid var(--pillBorder); border-radius:999px; background:var(--pill)}
-    /* ===== Seguidores ===== */
+
+    /* ===== Seguidores (acordeón) ===== */
     .followers{
       margin:22px auto 10px; display:flex; flex-direction:column; gap:10px; align-items:center;
     }
     .followers .total{
-      font-weight:800; font-size:1.05rem; padding:8px 14px; border-radius:999px;
-      background:#14141a; border:1px solid #2a2a35; display:inline-flex; gap:8px; align-items:center;
+      font-weight:800; font-size:1.05rem; padding:10px 16px; border-radius:999px;
+      background:#14141a; border:1px solid #2a2a35; display:inline-flex; gap:10px; align-items:center;
+      cursor:pointer; user-select:none;
     }
-    .badges{display:flex; flex-wrap:wrap; justify-content:center; gap:10px}
+    .followers .total .caret{display:inline-block; transition:transform .2s ease}
+    .followers .total[aria-expanded="true"] .caret{transform:rotate(180deg)}
+
+    .badges{
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+      gap:10px; overflow:hidden;
+      max-height:0; opacity:0; transition:max-height .35s ease, opacity .25s ease;
+    }
+    .badges.show{ max-height:220px; opacity:1 }
     .badge{
       display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px;
-      background:var(--pill); border:1px solid var(--pillBorder); font-weight:600;
+      background:var(--pill); border:1px solid var(--pillBorder); font-weight:600; justify-content:center;
     }
     .badge .count{font-weight:800}
     .badge .dot{width:8px;height:8px;border-radius:50%}
@@ -70,10 +79,10 @@
     }
     .btn-lanzamiento:hover{transform:scale(1.05); box-shadow:0 0 20px #8400ff99;}
 
-    /* ===== Links ===== */
+    /* ===== Links (izquierda + responsive) ===== */
     .links{
       margin-top:28px; display:grid; gap:12px; width:100%;
-      text-align:left; /* ← fuerza texto a la izquierda solo en la lista */
+      text-align:left;
     }
     .link{
       display:grid;
@@ -86,7 +95,7 @@
     }
     .link:hover{transform:translateY(-1px); border-color:#3a3a45; box-shadow:0 0 0 6px var(--ring)}
     .link .icon{display:flex; align-items:center}
-    .link .texts{min-width:0} /* permite truncar en móviles */
+    .link .texts{min-width:0}
     .link .title{font-weight:800; line-height:1.2}
     .link .desc{color:var(--muted); font-size:.95rem; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 
@@ -105,7 +114,7 @@
     }
     @media (max-width:420px){
       .link{grid-template-columns:auto 1fr auto; gap:10px}
-      .link .desc{display:none} /* opcional: oculta subtítulo en pantallas muy pequeñas */
+      .link .desc{display:none} /* limpia en pantallas muy pequeñas */
     }
   </style>
 </head>
@@ -116,37 +125,37 @@
       <img src="./foto/El.jpg" alt="Foto de JULYO$" />
     </div>
 
-    <!-- Nombre y descripción -->
+    <!-- Nombre y usuario -->
     <div class="name">JULYO$</div>
     <div class="handle">@julyos.yb</div>
 
-
+    <!-- Chips -->
     <div class="chips">
       <span class="chip">Artista boliviano</span>
       <span class="chip">Trap · Reggaetón · Hip hop · Drill</span>
       <span class="chip">Activo desde 2020</span>
     </div>
 
-    <!-- Seguidores -->
+    <!-- Seguidores (total + detalle plegable) -->
     <section class="followers" aria-label="Seguidores en redes">
-      <div class="total">
+      <div class="total" id="toggle-followers" role="button" tabindex="0"
+           aria-expanded="false" aria-controls="badges">
         <span>👥 Total seguidores:</span>
         <span id="total-followers" class="count">—</span>
+        <span class="caret">▾</span>
       </div>
-      <div class="badges">
+
+      <div class="badges" id="badges">
         <div class="badge ig" title="Instagram">
-          <span class="dot"></span>
-          <span>Instagram</span>
+          <span class="dot"></span><span>Instagram</span>
           <span id="ig-count" class="count">—</span>
         </div>
         <div class="badge tt" title="TikTok">
-          <span class="dot"></span>
-          <span>TikTok</span>
+          <span class="dot"></span><span>TikTok</span>
           <span id="tt-count" class="count">—</span>
         </div>
         <div class="badge yt" title="YouTube">
-          <span class="dot"></span>
-          <span>YouTube</span>
+          <span class="dot"></span><span>YouTube</span>
           <span id="yt-count" class="count">—</span>
         </div>
       </div>
@@ -220,22 +229,23 @@
   </main>
 
   <script>
-    // ========= EDITA SOLO ESTO =========
+    // ========= EDITA SOLO ESTO (manual) =========
     const profiles = {
       instagram: { followers: 7714 }, // Cambia por tus números reales
       tiktok:    { followers: 38248 },
       youtube:   { followers: 2164  }
     };
-    // ================================
+    // ===========================================
 
-    // Lógica automática
+    // formateo abreviado
     const fmt = n => {
       const abs = Math.abs(n);
       if (abs >= 1_000_000) return (n/1_000_000).toFixed(n%1_000_000 ? 1 : 0) + 'M';
-      if (abs >= 1_000) return (n/1_000).toFixed(n%1_000 ? 1 : 0) + 'K';
+      if (abs >= 1_000)     return (n/1_000).toFixed(n%1_000 ? 1 : 0) + 'K';
       return String(n);
     };
 
+    // pinta contadores
     const igEl = document.getElementById('ig-count');
     const ttEl = document.getElementById('tt-count');
     const ytEl = document.getElementById('yt-count');
@@ -251,7 +261,25 @@
     ytEl.textContent = fmt(yt);
     totalEl.textContent = fmt(total);
 
+    // toggle del detalle de seguidores
+    const toggleBtn = document.getElementById('toggle-followers');
+    const badgesBox = document.getElementById('badges');
+
+    function toggleFollowers(open) {
+      const willOpen = (typeof open === 'boolean') ? open : !badgesBox.classList.contains('show');
+      badgesBox.classList.toggle('show', willOpen);
+      toggleBtn.setAttribute('aria-expanded', String(willOpen));
+    }
+    toggleBtn.addEventListener('click', () => toggleFollowers());
+    toggleBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFollowers(); }
+    });
+
+    // año footer
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // opcional: abre el detalle automáticamente en pantallas grandes
+    if (window.matchMedia('(min-width: 801px)').matches) toggleFollowers(true);
   </script>
 </body>
 </html>
